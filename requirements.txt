@@ -1,6 +1,7 @@
 langgraph 
 langchain 
 langchain-google-genai 
+langchain-openai 
 langgraph-cli 
-langgraph-cli[inmem]
-grandalf
+langgraph-cli[inmem] 
+grandalf 
