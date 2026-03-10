@@ -31,8 +31,12 @@ class State(MessagesState):
     my_age: int
 
 
+def extractor(state: State):
+    return {}
+
+
 # la función principal de un nodo es actualizar el estado
-def node_1(state: State):
+def conversation(state: State):
     new_state: State = {}
     history = state["messages"]
     if not history:
@@ -57,9 +61,11 @@ def node_1(state: State):
 
 
 builder = StateGraph(State)
-builder.add_node("node_1", node_1)
+builder.add_node("conversation", conversation)
+builder.add_node("extractor", extractor)
 
-builder.add_edge(START, 'node_1')
-builder.add_edge('node_1', END)
+builder.add_edge(START, "extractor")
+builder.add_edge("extractor", "conversation")
+builder.add_edge("conversation", END)
 
 agent = builder.compile()
